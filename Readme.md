@@ -42,7 +42,7 @@ Ajouter la gestion des utilisateurs dans l'application.
 ### Admin :
 - Supprimer une séance
 
-### User : 
+### Connecté : 
 - Afficher les séances
 - Rechercher de film par critere
 
