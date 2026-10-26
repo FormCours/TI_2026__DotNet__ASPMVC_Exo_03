@@ -4,5 +4,6 @@
   </Folder>
   <Project Path="DemoCinema.BLL/DemoCinema.BLL.csproj" />
   <Project Path="DemoCinema.DAL/DemoCinema.DAL.csproj" />
+  <Project Path="DemoCinema.TDL/DemoCinema.TDL.csproj" Id="30538ad2-7259-4a61-ba99-2f68ded41402" />
   <Project Path="DemoCinema.WebApp/DemoCinema.WebApp.csproj" />
 </Solution>

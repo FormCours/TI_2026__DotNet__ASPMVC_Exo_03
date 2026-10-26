@@ -96,5 +96,61 @@ namespace DemoCinema.DAL
         ];
         internal int NextScreeningId = 5;
         #endregion
+
+        #region Member
+        internal List<MemberEntity> Members = [
+            new MemberEntity {
+                Id = 1,
+                Email = "della@test",
+                BirthDate = new DateTime(1989, 8, 13),
+                FirstName = "Della",
+                LastName = "Duck",
+                Username = "MoonDuck",
+                Role = "Admin",
+                HashPassword = "AQAAAAIABJPgAAAAEHPleF6HzjqtKQHzydKSObvOcBZ1USqAhjMPW9THCPyDBJSqyb6tW+SIE/h2LlXBdw=="
+            },
+            new MemberEntity {
+                Id = 2,
+                Email = "donald@test",
+                BirthDate = new DateTime(1989, 8, 13),
+                FirstName = null,
+                LastName = null,
+                Username = "NotDonald",
+                Role = "User",
+                HashPassword = "AQAAAAIABJPgAAAAEPia4FtSQvuvSemvdgadCnjTFsy4NNfAjK6wjhdF7Sa2Wy57YFWAwgVBtcDksYtiZQ=="
+            },
+            new MemberEntity {
+                Id = 3,
+                Email = "zaza@test",
+                BirthDate = new DateTime(2013, 10, 2),
+                FirstName = "Zaza",
+                LastName = "Vanderquack",
+                Username = "TacticalPancake",
+                Role = "Modo",
+                HashPassword = "AQAAAAIABJPgAAAAEF81uEAcV8dA5TplSQYHQFcJmH3hB4tDRC6kW0M0g6LzKOBB2x+WoDFj7blMejB2+Q=="
+            },
+            new MemberEntity {
+                Id = 4,
+                Email = "balthy@test",
+                BirthDate = new DateTime(1949, 7, 8),
+                FirstName = "Balthazar",
+                LastName = "Picsou",
+                Username = "MonsieurBalthazar",
+                Role = "User",
+                HashPassword = "AQAAAAIABJPgAAAAEGsKsq59hi5adx8sghZxZAiXFywcfvgUwqMTx5WVCw4IzVLIH1dz6TYNMsXC2cxTjw=="
+            },
+            new MemberEntity {
+                Id = 5,
+                Email = "lena@test",
+                BirthDate = new DateTime(2009, 2, 22),
+                FirstName = "Lena",
+                LastName = "De Sortilège",
+                Username = "ShadowShirley",
+                Role = "User",
+                HashPassword = "AQAAAAIABJPgAAAAEMBp4BbCGQdWhzvBh7wtSi9zJoR9qLhiR7jkEIEIveYyz/7UB5Co/w7T/dsgCc3KsQ=="
+            }
+        ];
+        internal int NextMemberId = 7;
+        #endregion
     }
 }

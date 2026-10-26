@@ -1,9 +1,11 @@
+using DemoCinema.BLL.Helpers;
 using DemoCinema.BLL.Interfaces;
 using DemoCinema.BLL.Services;
 using DemoCinema.DAL;
 using DemoCinema.DAL.Interfaces;
 using DemoCinema.DAL.Repositories;
 using DemoCinema.WebApp.Tools;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +38,25 @@ builder.Services.AddScoped<IScreeningRepository, ScreeningStaticRepository>();
 builder.Services.AddScoped<IMovieService, MovieService>();
 builder.Services.AddScoped<IScreeningService, ScreeningService>();
 
+builder.Services.AddTransient<IHasherHelper, HasherHelper>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IMemberRepository, MemberRepository>();
+
+// Configuration de l'authentification
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        // Options pour l'authentification
+        options.LoginPath = "/Auth/Login";
+        options.AccessDeniedPath = "/Auth/Denied";
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+
+        // Options pour le cookies
+        options.Cookie.Name = "ExoCine.JadoreLodeurDesCookiesAuPetitMatin";
+        options.Cookie.HttpOnly = true;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        options.Cookie.SameSite = SameSiteMode.Strict;
+    });
 
 var app = builder.Build();
 
@@ -50,6 +71,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
