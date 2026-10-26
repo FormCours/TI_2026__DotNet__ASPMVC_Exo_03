@@ -31,6 +31,20 @@ Ajouter la gestion des utilisateurs dans l'application.
     - Pour l'envoi de mail, utiliser le package : https://github.com/jstedfast/MailKit 
 	- Pour les tests utilise l'application Smtp4Dev : https://github.com/rnwood/smtp4dev
 
+### [Bonus] Profile utilisateur
+- Chaque utilisateur à une page profile (Éditable par l'utilisateur)
+- Possibilité de « Like » un film
+ 	- Liste des films liké sur la page profile 
+
+## Information de l'utilisateur
+```
+Username
+Email
+Role (User / Modo / Admin)
+FirstName (Optionnel)
+LastName (Optionnel)
+BirthDate (Optionnel)
+```
 ## Détails de la gestion des roles
 
 ### Modo & Admin :
