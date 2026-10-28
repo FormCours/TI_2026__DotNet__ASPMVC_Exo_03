@@ -18,15 +18,18 @@ namespace DemoCinema.WebApp.Controllers
             _authService = authService;
         }
 
-        public IActionResult Login()
+        public IActionResult Login([FromQuery] string? returnUrl)
         {
+            ViewData["returnUrl"] = returnUrl;
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Login([FromForm] AuthLoginFrom loginFrom, [FromQuery] string? returnUrl)
         {
-            if(!ModelState.IsValid) {
+            ViewData["returnUrl"] = returnUrl;
+
+            if (!ModelState.IsValid) {
                 return View();
             }
 
