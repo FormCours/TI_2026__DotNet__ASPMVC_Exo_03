@@ -23,7 +23,7 @@ namespace DemoCinema.WebApp.Models
 
         [Required]
         [MinLength(3)]
-        [RegularExpression(@"^[^@]*$")]
+        [RegularExpression(@"^[^@\s]*$")]
         public required string Username { get; set; }
 
         [Required]
