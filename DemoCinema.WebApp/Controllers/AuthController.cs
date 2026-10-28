@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using System.Security.Principal;
 
 namespace DemoCinema.WebApp.Controllers
 {
@@ -80,6 +81,19 @@ namespace DemoCinema.WebApp.Controllers
             // Redirection
             TempData["Message"] = "Compte créé avec succès. Veuillez procéder à une authentification immédiate pour confirmer que les identifiants stockés correspondent à vos intentions réelles de saisie. Merci.";
             return RedirectToAction(nameof(Login));
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            // SignIn
+            await HttpContext.SignOutAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme
+            );
+
+            // Redirection
+            return RedirectToAction("Index", "Home");
         }
     }
 }
