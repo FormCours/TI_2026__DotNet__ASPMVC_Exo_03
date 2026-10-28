@@ -2,10 +2,12 @@
 using DemoCinema.BLL.Interfaces;
 using DemoCinema.WebApp.Mappers;
 using DemoCinema.WebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoCinema.WebApp.Controllers
 {
+    [Authorize]
     public class ScreeningController : Controller
     {
         private readonly IScreeningService _screeningService;
@@ -40,12 +42,14 @@ namespace DemoCinema.WebApp.Controllers
             return View(results);
         }
 
+        [Authorize(Roles = "Admin,Modo")]
         public IActionResult Create()
         {
             ViewData["Movies"] = _movieService.GetMany(0, 1_000).Select(MovieMapper.ToVM);
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "Admin,Modo")]
         public IActionResult Create(ScreeningForm data)
         {
             if(!ModelState.IsValid)
@@ -68,12 +72,14 @@ namespace DemoCinema.WebApp.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin,Modo")]
         public IActionResult Cancel(int id)
         {
             _screeningService.Cancel(id);
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             _screeningService.Delete(id);

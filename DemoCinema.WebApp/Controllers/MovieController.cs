@@ -1,6 +1,7 @@
 ﻿using DemoCinema.BLL.Interfaces;
 using DemoCinema.WebApp.Mappers;
 using DemoCinema.WebApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoCinema.WebApp.Controllers
@@ -30,13 +31,27 @@ namespace DemoCinema.WebApp.Controllers
             return View(movie);
         }
 
+        [Authorize]
+        public IActionResult Search()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin,Modo")]
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
         [HttpGet]
+        [Authorize(Roles = "Admin,Modo")]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost, ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Modo")]
         public IActionResult Create([FromForm] MovieForm data)
         {
             if(!ModelState.IsValid)

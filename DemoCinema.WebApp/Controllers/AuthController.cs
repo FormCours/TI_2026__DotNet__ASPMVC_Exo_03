@@ -3,6 +3,7 @@ using DemoCinema.BLL.Models;
 using DemoCinema.WebApp.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Security.Principal;
@@ -85,6 +86,7 @@ namespace DemoCinema.WebApp.Controllers
 
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             // SignIn
@@ -94,6 +96,12 @@ namespace DemoCinema.WebApp.Controllers
 
             // Redirection
             return RedirectToAction("Index", "Home");
+        }
+
+
+        public IActionResult Denied()
+        {
+            return View();
         }
     }
 }
