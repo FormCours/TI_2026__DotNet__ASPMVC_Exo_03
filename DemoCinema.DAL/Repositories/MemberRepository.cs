@@ -35,5 +35,24 @@ namespace DemoCinema.DAL.Repositories
             MemberEntity? member = context.Members.SingleOrDefault(m => m.Email == email);
             return member?.HashPassword;
         }
+
+        public int Insert(MemberEntity data)
+        {
+            MemberEntity memberToAdd = new MemberEntity
+            {
+                Id = context.NextMemberId,
+                Email = data.Email,
+                Username = data.Username,
+                BirthDate = data.BirthDate,
+                FirstName = data.FirstName,
+                LastName = data.LastName,
+                Role = data.Role,
+                HashPassword = string.Empty
+            };
+            context.NextMemberId++;
+
+            context.Members.Add(memberToAdd);
+            return memberToAdd.Id;
+        }
     }
 }

@@ -1,9 +1,16 @@
 @model DemoCinema.WebApp.Models.AuthLoginFrom
 @{
     ViewData["Title"] = "Connexion";
+    string? message = TempData["message"] as string;
 }
 
 <h1>Connexion</h1>
+@if(message is not null)
+{
+    <div class="alert alert-warning border-danger" role="alert">
+        <p class="text-danger m-0">@message</p>
+    </div>
+}
 
 <hr />
 <div class="row">

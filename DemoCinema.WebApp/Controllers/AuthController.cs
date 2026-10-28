@@ -54,5 +54,32 @@ namespace DemoCinema.WebApp.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register([FromForm] AuthRegisterFrom registerFrom)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            if(_authService.CheckAlreadyExists(registerFrom.Email))
+            {
+                ModelState.AddModelError(string.Empty, "Un compte existe déjà pour ce couriel");
+                return View();
+            }
+
+            _authService.Register(registerFrom.Email, registerFrom.Username, registerFrom.Password);
+
+            // Redirection
+            TempData["Message"] = "Compte créé avec succès. Veuillez procéder à une authentification immédiate pour confirmer que les identifiants stockés correspondent à vos intentions réelles de saisie. Merci.";
+            return RedirectToAction(nameof(Login));
+        }
     }
 }

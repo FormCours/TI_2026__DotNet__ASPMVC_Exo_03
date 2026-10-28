@@ -22,6 +22,11 @@ namespace DemoCinema.WebApp.Models
         public required string Email { get; set; }
 
         [Required]
+        [MinLength(3)]
+        [RegularExpression(@"^[^@]*$")]
+        public required string Username { get; set; }
+
+        [Required]
         [MinLength(6)]
         [RegularExpression(@"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^A-Za-z0-9\s]).*$")]
         [DataType(DataType.Password)]

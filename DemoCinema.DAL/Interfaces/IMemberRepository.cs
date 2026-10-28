@@ -6,5 +6,6 @@ namespace DemoCinema.DAL.Interfaces
     {
         MemberEntity? GetByEmail(string email);
         string? GetHashPwd(string email);
+        int Insert(MemberEntity data);
     }
 }
